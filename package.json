@@ -1,0 +1,13 @@
+{
+  "name": "akuda-locker-decoder",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "serve": "npx http-server ."
+  },
+  "devDependencies": {
+    "typescript": "^5.8.0"
+  }
+}
