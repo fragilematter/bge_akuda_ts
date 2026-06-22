@@ -23,19 +23,19 @@ export interface DecodeResult {
     russianCode: string;
 }
 
-function swapBits(byte1Index: number, byte2Index: number, byte1: number, byte2: number, bytes: Uint8Array): void {
-    const bit1 = (bytes[byte1Index] >> byte1) & 1;
-    const bit2 = (bytes[byte2Index] >> byte2) & 1;
+function swapBits(byte1Index: number, byte2Index: number, bit1shift: number, bit2shift: number, bytes: Uint8Array): void {
+    const bit1 = (bytes[byte1Index] >> bit1shift) & 1;
+    const bit2 = (bytes[byte2Index] >> bit2shift) & 1;
 
     if (bit1 === 0) 
-    	bytes[byte2Index] &= ~(1 << byte2);
+    	bytes[byte2Index] &= ~(1 << bit2shift);
     else 
-    	bytes[byte2Index] |= (1 << byte2);
+    	bytes[byte2Index] |= (1 << bit2shift);
 
     if (bit2 === 0) 
-    	bytes[byte1Index] &= ~(1 << byte1);
+    	bytes[byte1Index] &= ~(1 << bit1shift);
     else 
-    	bytes[byte1Index] |= (1 << byte1);
+    	bytes[byte1Index] |= (1 << bit1shift);
 }
 
 function readCode(bytes: Uint8Array): { russian: string; english: string } {
