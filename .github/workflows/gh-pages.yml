@@ -11,14 +11,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: 'Setup Node'
         uses: actions/setup-node@v6
+        with:
+          node-version: '24'
       - name: 'Build'
         run: npm run build
       - name: 'Upload artifact'
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
+          name: bge-akuda-ts
           path: .
   deploy:
     name: 'Deploy'
@@ -33,4 +36,4 @@ jobs:
     steps:
       - name: 'Deploy to gh-pages'
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
